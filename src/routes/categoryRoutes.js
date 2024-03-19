@@ -4,10 +4,8 @@
 ------------------------------------------------------- */
 
 const router = require("express").Router();
+const categories = require("../controllers/categoryController");
 
-const products = require("../controllers/productsController");
-
-router.route("/").get(products.list).post(products.create);
-router.route("/:id").get(products.read);
-
+router.route("/").get(categories.list).post(categories.create);
+router.route("/:id").get(categories.read);
 module.exports = router;

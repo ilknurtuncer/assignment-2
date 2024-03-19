@@ -13,12 +13,16 @@ const UsersSchema = new mongoose.Schema(
     email: {
       type: String,
       trim: true,
-      required: true,
+      // ekrana çıkacak hata
+      required: [true, "Email must be required."],
       unique: true,
-      validate: (email) => email.includes("@") && email.includes("."),
+      validate: [
+        (email) => email.includes("@") && email.includes("."),
+        "Email type is incorrect",
+      ],
     },
-    __v: Number,
-    pass: {
+    // __v: Number, otomatik geliyo
+    password: {
       type: String,
       trim: true,
       required: true,
@@ -26,10 +30,10 @@ const UsersSchema = new mongoose.Schema(
     },
   },
   {
-    collection: "users",
+    collection: "user",
     timestamps: true,
     //createdAt, updatedAt eklendi.
   }
 );
 
-module.exports = mongoose.model("Users", UsersSchema);
+module.exports = mongoose.model("User", UsersSchema);
